@@ -1,0 +1,20 @@
+# Dependencies
+node_modules/
+web/node_modules/
+
+# Build
+web/dist/
+web/.astro/
+
+# Local tooling (portable Node)
+.tools/
+
+# OS / editor
+.DS_Store
+*.log
+.vscode/
+.idea/
+
+# Env
+.env
+.env.*

@@ -1,0 +1,180 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection, type CollectionEntry } from "astro:content";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+interface Props {
+  project: CollectionEntry<"projects">;
+}
+
+const { project } = Astro.props;
+const { Content } = await project.render();
+const { title, year, client, role, tools, summary, cover, coverAlt } = project.data;
+---
+
+<BaseLayout title={title} description={summary}>
+  <article>
+    <header class="case-hero">
+      <div class="case-hero__media">
+        <img src={cover} alt={coverAlt} width="1600" height="1000" />
+      </div>
+      <div class="container case-hero__copy reveal">
+        <p class="case-kicker">{year}{client ? ` · ${client}` : ""}</p>
+        <h1 class="case-title">{title}</h1>
+        <p class="case-summary">{summary}</p>
+      </div>
+    </header>
+
+    <div class="container case-body">
+      <aside class="case-meta reveal">
+        <div>
+          <h2>Role</h2>
+          <p>{role}</p>
+        </div>
+        <div>
+          <h2>Tools</h2>
+          <ul>
+            {tools.map((tool) => <li>{tool}</li>)}
+          </ul>
+        </div>
+      </aside>
+
+      <div class="case-content reveal">
+        <Content />
+      </div>
+    </div>
+
+    <div class="container case-back">
+      <a href={`${import.meta.env.BASE_URL}work`}>← All work</a>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .case-hero {
+    position: relative;
+  }
+
+  .case-hero__media {
+    min-height: min(72vh, 40rem);
+    background: var(--bg-deep);
+    overflow: hidden;
+  }
+
+  .case-hero__media img {
+    width: 100%;
+    height: min(72vh, 40rem);
+    object-fit: cover;
+  }
+
+  .case-hero__copy {
+    padding-block: var(--space-lg) var(--space-md);
+  }
+
+  .case-kicker {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 0.65rem;
+  }
+
+  .case-title {
+    font-size: clamp(2.4rem, 6vw, 4.2rem);
+    margin-bottom: 0.85rem;
+  }
+
+  .case-summary {
+    max-width: 40rem;
+    font-size: 1.1rem;
+    color: var(--ink-muted);
+  }
+
+  .case-body {
+    display: grid;
+    grid-template-columns: 14rem minmax(0, 1fr);
+    gap: var(--space-lg);
+    padding-bottom: var(--space-xl);
+  }
+
+  .case-meta {
+    display: grid;
+    gap: var(--space-md);
+    align-content: start;
+    padding-top: 0.25rem;
+  }
+
+  .case-meta h2 {
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 0.4rem;
+  }
+
+  .case-meta p,
+  .case-meta li {
+    font-size: 0.95rem;
+  }
+
+  .case-meta ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .case-content :global(p) {
+    margin-bottom: 1.1rem;
+    max-width: 42rem;
+    color: var(--ink-muted);
+  }
+
+  .case-content :global(h2) {
+    font-size: 1.75rem;
+    margin: 2rem 0 0.75rem;
+  }
+
+  .case-content :global(ul) {
+    margin: 0 0 1.1rem;
+    padding-left: 1.1rem;
+    color: var(--ink-muted);
+  }
+
+  .case-back {
+    padding-bottom: var(--space-xl);
+  }
+
+  .case-back a {
+    font-size: 0.875rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--ink-muted);
+  }
+
+  .case-back a:hover {
+    color: var(--accent);
+  }
+
+  @media (max-width: 800px) {
+    .case-body {
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+    }
+
+    .case-meta {
+      grid-template-columns: 1fr 1fr;
+      padding-bottom: var(--space-sm);
+      border-bottom: 1px solid var(--line);
+    }
+  }
+</style>

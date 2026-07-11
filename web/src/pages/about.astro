@@ -1,0 +1,124 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { site } from "../data/site";
+---
+
+<BaseLayout title="About" description={`${site.name} — ${site.role}`}>
+  <section class="section">
+    <div class="container about">
+      <header class="about__intro reveal">
+        <p class="page-kicker">Profile</p>
+        <h1 class="page-title">{site.name}</h1>
+        <p class="about__role">{site.role}</p>
+        <p class="about__lead">
+          그래픽 디자이너로서 브랜드 아이덴티티, 편집, 비주얼 시스템을 다룹니다. 형태와 여백,
+          타이포그래피로 메시지가 또렷해지는 순간을 만듭니다.
+        </p>
+      </header>
+
+      <div class="about__grid">
+        <section class="about__block reveal">
+          <h2>Focus</h2>
+          <ul>
+            <li>Brand identity</li>
+            <li>Editorial & print</li>
+            <li>Visual systems</li>
+            <li>Poster & campaign</li>
+          </ul>
+        </section>
+
+        <section class="about__block reveal">
+          <h2>Based in</h2>
+          <p>{site.location}</p>
+        </section>
+
+        <section class="about__block about__contact reveal">
+          <h2>Contact</h2>
+          <p>
+            <a href={`mailto:${site.email}`}>{site.email}</a>
+          </p>
+          <p>
+            <a href={`tel:${site.phone.replace(/-/g, "")}`}>{site.phone}</a>
+          </p>
+        </section>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .about {
+    display: grid;
+    gap: var(--space-xl);
+  }
+
+  .about__intro {
+    max-width: 38rem;
+  }
+
+  .page-kicker {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .page-title {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    margin-bottom: 0.5rem;
+  }
+
+  .about__role {
+    font-size: 0.875rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.25rem;
+  }
+
+  .about__lead {
+    font-size: 1.15rem;
+    color: var(--ink-muted);
+  }
+
+  .about__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-lg);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--line);
+  }
+
+  .about__block h2 {
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 0.85rem;
+  }
+
+  .about__block ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .about__block li,
+  .about__block p {
+    margin-bottom: 0.35rem;
+  }
+
+  .about__contact a {
+    text-decoration: none;
+  }
+
+  @media (max-width: 800px) {
+    .about__grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+    }
+  }
+</style>
