@@ -55,6 +55,9 @@ npm run dev
 
 프로젝트 사이트(`username.github.io/repo-name`)로 배포할 때는 `base`를 `'/repo-name/'`로 바꾸세요.
 
+현재 배포 URL: https://leeyuejin5055.github.io/portfolio/  
+(`web/astro.config.mjs`에 `base: "/portfolio/"` 설정됨)
+
 ## Obsidian
 
 1. Obsidian에서 **보관함 열기**

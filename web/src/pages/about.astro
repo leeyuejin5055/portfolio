@@ -3,37 +3,51 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { site } from "../data/site";
 ---
 
-<BaseLayout title="About" description={`${site.name} — ${site.role}`}>
+<BaseLayout title="About" description={site.shortIntro}>
   <section class="section">
     <div class="container about">
       <header class="about__intro reveal">
         <p class="page-kicker">Profile</p>
         <h1 class="page-title">{site.name}</h1>
         <p class="about__role">{site.role}</p>
-        <p class="about__lead">
-          그래픽 디자이너로서 브랜드 아이덴티티, 편집, 비주얼 시스템을 다룹니다. 형태와 여백,
-          타이포그래피로 메시지가 또렷해지는 순간을 만듭니다.
-        </p>
+        <p class="about__lead">{site.shortIntro}</p>
       </header>
+
+      <div class="about__story reveal">
+        <p>
+          안녕하세요. 브랜드가 가진 분위기와 메시지를 시각적으로 정리하고, 이미지·타이포그래피·레이아웃을
+          통해 하나의 장면으로 완성하는 디자이너 이여진입니다.
+        </p>
+        <p>
+          브랜드 포스터, 상세페이지, 패키지, 카드뉴스, 타이포그래피, 비주얼 콘셉트 기획을 중심으로
+          작업해 왔습니다. 단순히 보기 좋은 결과물을 만드는 데서 끝나지 않고, 브랜드가 어떤 인상을
+          남겨야 하는지 먼저 고민한 뒤 그에 맞는 이미지와 구조를 설계하는 것을 중요하게 생각합니다.
+        </p>
+        <p>
+          해외 생활과 영어 전공, 심리상담학 복수전공, 정신건강의학과 근무 경험을 통해 사람의 감정과
+          행동을 관찰하고 이해하는 법을 배웠습니다. 이 경험은 디자인을 할 때에도 자연스럽게 이어져,
+          사용자가 어떤 인상을 받는지, 브랜드가 어떤 분위기로 기억되는지를 세심하게 고민합니다.
+        </p>
+      </div>
 
       <div class="about__grid">
         <section class="about__block reveal">
           <h2>Focus</h2>
           <ul>
-            <li>Brand identity</li>
-            <li>Editorial & print</li>
-            <li>Visual systems</li>
-            <li>Poster & campaign</li>
+            {site.focus.map((item) => <li>{item}</li>)}
           </ul>
         </section>
 
         <section class="about__block reveal">
-          <h2>Based in</h2>
-          <p>{site.location}</p>
+          <h2>Tools</h2>
+          <ul>
+            {site.tools.map((item) => <li>{item}</li>)}
+          </ul>
         </section>
 
         <section class="about__block about__contact reveal">
           <h2>Contact</h2>
+          <p>{site.location}</p>
           <p>
             <a href={`mailto:${site.email}`}>{site.email}</a>
           </p>
@@ -42,6 +56,91 @@ import { site } from "../data/site";
           </p>
         </section>
       </div>
+
+      <section class="about__panel reveal">
+        <h2>Strengths</h2>
+        <div class="about__strengths">
+          <article>
+            <h3>장면을 만드는 콘셉트</h3>
+            <p>
+              브랜드의 메시지와 제품 특징을 분석한 뒤, 컬러·오브젝트·공간·조명·타이포그래피를 조합해
+              하나의 장면으로 구체화합니다.
+            </p>
+          </article>
+          <article>
+            <h3>감정과 분위기</h3>
+            <p>
+              강한 대비, 빛, 질감, 인물, 공간감을 활용해 시선을 끌고 기억에 남는 이미지를 만드는 데
+              강점이 있습니다.
+            </p>
+          </article>
+          <article>
+            <h3>레퍼런스 재해석</h3>
+            <p>
+              구도, 레이아웃, 타이포, 컬러 구조를 분석한 뒤 복제보다 프로젝트 목적에 맞게
+              재구성합니다.
+            </p>
+          </article>
+          <article>
+            <h3>디테일 수정</h3>
+            <p>
+              텍스트 크기·간격·정렬, 오브젝트 위치, 빛의 방향, 재질과 해상도까지 반복적으로 확인하며
+              완성도를 높입니다.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <div class="about__split">
+        <section class="about__panel reveal">
+          <h2>Education</h2>
+          <div class="about__entry">
+            <h3>Korea Baptist Theological University</h3>
+            <p>Practical English / Counseling Psychology (복수전공)</p>
+          </div>
+          <div class="about__entry">
+            <h3>Previous Study — New Zealand</h3>
+            <p>Fashion Design, English communication & overseas education</p>
+          </div>
+          <div class="about__entry">
+            <h3>Offline Portfolio Design Program</h3>
+            <p>2026.05 — Present · 포스터·브랜드 비주얼 중심 포트폴리오</p>
+          </div>
+          <div class="about__entry">
+            <h3>Online Graphic Design Program</h3>
+            <p>2025 — 2026 · 포스터, 상세페이지, 패키지, 타이포, 브랜드 콘텐츠</p>
+          </div>
+        </section>
+
+        <section class="about__panel reveal">
+          <h2>Experience</h2>
+          <div class="about__entry">
+            <h3>Mental Health Clinic</h3>
+            <p>고객 응대, 예약·행정, 정확한 정보 전달과 문서 관리</p>
+          </div>
+          <div class="about__entry">
+            <h3>Accommodation Co-host</h3>
+            <p>숙소 3개 운영 지원, 해외 고객 영어 응대, 예약·클레임 관리</p>
+          </div>
+          <div class="about__entry">
+            <h3>Retail Part-time</h3>
+            <p>상품 입고 및 매장 운영 지원, 현장 협업</p>
+          </div>
+        </section>
+      </div>
+
+      <section class="about__closing reveal">
+        <h2>What I value</h2>
+        <p>
+          디자인을 통해 브랜드가 가진 이야기를 한눈에 이해할 수 있는 장면으로 만들고 싶습니다.
+          유행을 그대로 따라가기보다 브랜드에 맞는 이유가 있는 비주얼을 만들고, 이미지와
+          타이포그래피가 하나의 분위기 안에서 정리되는 것을 중요하게 생각합니다.
+        </p>
+        <p class="about__goal">
+          목표: 스포츠, 패션, 문화, 라이프스타일 브랜드와 함께 강한 인상을 남기는 비주얼 캠페인을
+          만드는 그래픽 디자이너.
+        </p>
+      </section>
     </div>
   </section>
 </BaseLayout>
@@ -53,7 +152,7 @@ import { site } from "../data/site";
   }
 
   .about__intro {
-    max-width: 38rem;
+    max-width: 42rem;
   }
 
   .page-kicker {
@@ -82,6 +181,19 @@ import { site } from "../data/site";
     color: var(--ink-muted);
   }
 
+  .about__story {
+    max-width: 44rem;
+    display: grid;
+    gap: 1rem;
+    padding-top: var(--space-sm);
+    border-top: 1px solid var(--line);
+  }
+
+  .about__story p {
+    color: var(--ink-muted);
+    font-size: 1.02rem;
+  }
+
   .about__grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -90,7 +202,9 @@ import { site } from "../data/site";
     border-top: 1px solid var(--line);
   }
 
-  .about__block h2 {
+  .about__block h2,
+  .about__panel h2,
+  .about__closing h2 {
     font-family: var(--font-body);
     font-size: 0.7rem;
     font-weight: 500;
@@ -115,10 +229,70 @@ import { site } from "../data/site";
     text-decoration: none;
   }
 
+  .about__panel {
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--line);
+  }
+
+  .about__strengths {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-md);
+  }
+
+  .about__strengths h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.45rem;
+  }
+
+  .about__strengths p {
+    color: var(--ink-muted);
+    font-size: 0.95rem;
+  }
+
+  .about__split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+  }
+
+  .about__entry {
+    margin-bottom: 1.1rem;
+  }
+
+  .about__entry h3 {
+    font-size: 1.15rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .about__entry p {
+    color: var(--ink-muted);
+    font-size: 0.95rem;
+  }
+
+  .about__closing {
+    max-width: 44rem;
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--line);
+  }
+
+  .about__closing p {
+    color: var(--ink-muted);
+    margin-bottom: 1rem;
+  }
+
+  .about__goal {
+    color: var(--ink) !important;
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    line-height: 1.35;
+  }
+
   @media (max-width: 800px) {
-    .about__grid {
+    .about__grid,
+    .about__strengths,
+    .about__split {
       grid-template-columns: 1fr;
-      gap: var(--space-md);
     }
   }
 </style>

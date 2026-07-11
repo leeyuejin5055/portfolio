@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-label="Signal Mark placeholder">
-  <rect width="1200" height="900" fill="#e4ebe6"/>
-  <circle cx="600" cy="420" r="210" fill="none" stroke="#1f4d3a" stroke-width="18"/>
-  <polygon points="600,250 740,560 460,560" fill="#1a1a18"/>
-  <rect x="420" y="640" width="360" height="28" fill="#1f4d3a"/>
-  <text x="120" y="120" font-family="Georgia, serif" font-size="42" fill="#1a1a18">Signal Mark</text>
-</svg>

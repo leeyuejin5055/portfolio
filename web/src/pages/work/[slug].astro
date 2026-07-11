@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection, type CollectionEntry } from "astro:content";
+import { withBase } from "../../lib/paths";
 
 export async function getStaticPaths() {
   const projects = await getCollection("projects");
@@ -17,13 +18,14 @@ interface Props {
 const { project } = Astro.props;
 const { Content } = await project.render();
 const { title, year, client, role, tools, summary, cover, coverAlt } = project.data;
+const coverSrc = withBase(cover);
 ---
 
 <BaseLayout title={title} description={summary}>
   <article>
     <header class="case-hero">
       <div class="case-hero__media">
-        <img src={cover} alt={coverAlt} width="1600" height="1000" />
+        <img src={coverSrc} alt={coverAlt} width="724" height="1024" />
       </div>
       <div class="container case-hero__copy reveal">
         <p class="case-kicker">{year}{client ? ` · ${client}` : ""}</p>
@@ -63,15 +65,17 @@ const { title, year, client, role, tools, summary, cover, coverAlt } = project.d
   }
 
   .case-hero__media {
-    min-height: min(72vh, 40rem);
-    background: var(--bg-deep);
+    min-height: min(85vh, 52rem);
+    background: #0d0d0d;
     overflow: hidden;
+    display: grid;
+    place-items: center;
   }
 
   .case-hero__media img {
-    width: 100%;
-    height: min(72vh, 40rem);
-    object-fit: cover;
+    width: min(100%, 42rem);
+    height: min(85vh, 52rem);
+    object-fit: contain;
   }
 
   .case-hero__copy {
@@ -141,6 +145,13 @@ const { title, year, client, role, tools, summary, cover, coverAlt } = project.d
   .case-content :global(h2) {
     font-size: 1.75rem;
     margin: 2rem 0 0.75rem;
+  }
+
+  .case-content :global(img) {
+    width: min(100%, 28rem);
+    height: auto;
+    margin: 1.5rem 0;
+    background: #0d0d0d;
   }
 
   .case-content :global(ul) {
